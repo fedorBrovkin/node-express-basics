@@ -30,20 +30,18 @@ export function addMeadowlarkResource(app: any) {
 
     app.use((error: any, request: Request, response: Response, next: any) => {
 
-        console.log("Next filter is calling...")
-
+        console.log("Error filter is calling...")
         console.error(error.message);
+
         response.setHeader(`Content-Type`, `text/plain`);
         response.statusCode = 500;
-        //response.end(`500 - Internal Server Error`);
-
-        // next();
+        response.send(`500 - Internal Server Error`);
     });
 
     app.use((request: Request, response: Response) => {
 
         response.setHeader(`Content-Type`, `text/plain`);
         response.statusCode = 400;
-        //response.end(`404 - Not found`);
+        response.end(`404 - Not found`);
     });
 }
